@@ -1,0 +1,23 @@
+[user]
+  name = Alex Savanovich
+  email = 40720931+savme@users.noreply.github.com
+[fetch]
+  prune = true
+[push]
+  default = "tracking"
+[gpg]
+  format = ssh
+[commit]
+  gpgsign = true
+[core]
+  excludesFile = ~/.gitignore
+[alias]
+  st = status -sb
+  logg = log --graph --oneline
+  root = rev-parse --show-toplevel
+[include]
+  path = ~/.gitconfig.inc
+[credential "https://github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential

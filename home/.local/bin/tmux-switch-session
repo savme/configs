@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+target=$(realpath "$HOME/developer")
+selected=$(fd --base-directory "$target" -td --max-depth 3 --hidden --format '{//}' -g '.git' | fzf --tmux --header "select project")
+if [ -z "$selected" ]; then
+	exit 0
+fi
+
+session_name=$(echo "$selected" | tr -d .:)
+if ! tmux has-session -t "$selected" 2>/dev/null; then
+	path=$(realpath "$HOME/developer/$selected")
+	tmux new-session -d -c "$path" -s "$session_name"
+fi
+
+tmux switch -t "$session_name"
