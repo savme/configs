@@ -1,0 +1,14 @@
+theme = tokyonight night
+
+font-family = Iosevka Fixed
+font-feature = -calt, -liga, -dlig
+font-size = 14
+
+window-padding-x = 5
+window-padding-x = 5
+cursor-style = block
+shell-integration-features = no-cursor
+copy-on-select = clipboard
+
+link-url = true
+keybind = ctrl+tab=esc:[27;5;9~
