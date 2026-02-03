@@ -315,8 +315,8 @@ local plugins = {
     version = "1.*",
     opts = {
       signature = { enabled = true },
-      completion = { trigger = { show_in_snippet = false } },
       keymap = { preset = "default", ["<C-Tab>"] = { "show", "accept", "fallback" } },
+      completion = { documentation = { auto_show = true } },
     },
     keys = { { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go Definition" } },
   },
