@@ -180,7 +180,10 @@ local plugins = {
         javascript = { "dprint", "prettierd", "prettier", stop_after_first = true },
         typescript = { "dprint", "prettierd", "prettier", stop_after_first = true },
       },
-      format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
+      format_on_save = function()
+        if vim.g.disable_autoformat then return end
+        return { timeout_ms = 500, lsp_format = "fallback" }
+      end,
     },
   },
   { "mason-org/mason.nvim", opts = {} },
@@ -359,3 +362,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+vim.api.nvim_create_user_command("FormatToggle", function()
+  vim.g.disable_autoformat = not vim.g.disable_autoformat
+  print("Conform: format on save " .. (vim.g.disable_autoformat and "disabled" or "enabled"))
+end, { desc = "Toggle global autoformat-on-save" })
