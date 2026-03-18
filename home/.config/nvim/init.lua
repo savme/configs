@@ -354,7 +354,9 @@ local lsp_inlay_hints_enabled = { gopls = true }
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-    if client.root_dir then vim.cmd("lcd " .. client.root_dir) end
+    if client.root_dir and vim.fn.isdirectory(client.root_dir .. "/.git") == 1 then
+      vim.cmd("lcd " .. client.root_dir)
+    end
 
     client.server_capabilities.semanticTokensProvider = nil
     if client.server_capabilities.inlayHintProvider then
