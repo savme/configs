@@ -228,17 +228,14 @@ local plugins = {
       { "igorlfs/nvim-dap-view", opts = { winbar = { controls = { enabled = true } } } },
       { "theHamsta/nvim-dap-virtual-text", opts = { virt_text_pos = "eol" } },
     },
-    keys = function()
-      local dap = require("dap")
-      return {
-        { "<leader>b", desc = "debug" },
-        { "<leader>bb", dap.toggle_breakpoint, desc = "[b]reakpoint" },
-        { "<leader>bc", dap.continue, desc = "[c]ontinue" },
-        { "<leader>bR", dap.clear_breakpoints, desc = "[R]emove breakpoints" },
-        { "<leader>bC", dap.run_to_cursor, desc = "Go to [C]ursor" },
-        { "<leader>bk", dap.terminate, desc = "[k]ill session" },
-      }
-    end,
+    keys = {
+      { "<leader>b", desc = "debug" },
+      { "<leader>bb", function() require("dap").toggle_breakpoint() end, desc = "[b]reakpoint" },
+      { "<leader>bc", function() require("dap").continue() end, desc = "[c]ontinue" },
+      { "<leader>bR", function() require("dap").clear_breakpoints() end, desc = "[R]emove breakpoints" },
+      { "<leader>bC", function() require("dap").run_to_cursor() end, desc = "Go to [C]ursor" },
+      { "<leader>bk", function() require("dap").terminate() end, desc = "[k]ill session" },
+    },
     config = function()
       local dap = require("dap")
       local ui = require("dap-view")
@@ -248,20 +245,17 @@ local plugins = {
   },
   {
     "nvim-neotest/neotest",
-    keys = function()
-      local neotest = require("neotest")
-      return {
-        {
-          "<leader>bt",
-          function() neotest.run.run({ suite = false, strategy = "dap" }) end,
-          desc = "debug nearest [t]est",
-        },
-        { "<leader>tt", function() neotest.run.run() end, desc = "nearest [t]est" },
-        { "<leader>tl", function() neotest.run.run_last() end, desc = "[l]ast" },
-        { "<leader>tK", function() neotest.run.stop() end, desc = "[k]ill" },
-        { "<leader>ts", function() neotest.summary.toggle() end, desc = "[s]ummary" },
-      }
-    end,
+    keys = {
+      {
+        "<leader>bt",
+        function() require("neotest").run.run({ suite = false, strategy = "dap" }) end,
+        desc = "debug nearest [t]est",
+      },
+      { "<leader>tt", function() require("neotest").run.run() end, desc = "nearest [t]est" },
+      { "<leader>tl", function() require("neotest").run.run_last() end, desc = "[l]ast" },
+      { "<leader>tK", function() require("neotest").run.stop() end, desc = "[k]ill" },
+      { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "[s]ummary" },
+    },
     dependencies = {
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
