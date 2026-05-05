@@ -15,6 +15,7 @@ abbr -a g git
 
 fish_add_path $HOME/.cargo/bin
 fish_add_path "$(go env GOPATH)/bin"
+fish_add_path /opt/homebrew/share/google-cloud-sdk/bin
 
 if test -f $HOME/.config/fish/extras.fish
     source $HOME/.config/fish/extras.fish
