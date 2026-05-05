@@ -359,6 +359,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text", "gitcommit", "rst" },
+  callback = function()
+    vim.wo.wrap = true
+    vim.wo.linebreak = true
+  end,
+})
+
 vim.api.nvim_create_user_command("FormatToggle", function()
   vim.g.disable_autoformat = not vim.g.disable_autoformat
   print("Conform: format on save " .. (vim.g.disable_autoformat and "disabled" or "enabled"))
