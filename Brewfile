@@ -1,10 +1,12 @@
 tap "bufbuild/buf"
 tap "hashicorp/tap"
 tap "oven-sh/bun"
+tap "go-task/tap"
 
 brew "bufbuild/buf/buf"
 brew "hashicorp/tap/terraform"
 brew "oven-sh/bun/bun"
+brew "go-task/tap/go-task"
 
 brew "bat"
 brew "cloc"
